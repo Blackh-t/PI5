@@ -1,0 +1,10 @@
+[Unit]
+Description=start-fan on boot.
+
+[Service]
+Type=oneshot
+ExecStart=~/git/PI5/systemd/start_fan.sh
+
+[Install]
+WantedBy=multi-user.target
+
