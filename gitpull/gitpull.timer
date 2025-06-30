@@ -1,0 +1,10 @@
+[Unit]
+Description=Do gitpull every 5min. 
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+Unit=gitpull.service
+
+[Install]
+WantedBy=timers.target

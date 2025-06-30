@@ -1,0 +1,8 @@
+[Unit]
+Descriptopn=Git auto pull for PI5 repo.
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=git/PI5/gitpull.fish
+
