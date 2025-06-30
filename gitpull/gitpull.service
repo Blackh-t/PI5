@@ -4,5 +4,4 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=git/PI5/gitpull.fish
-
+ExecStart=ExecStart=/usr/local/bin/gitpull.service

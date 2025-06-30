@@ -18,8 +18,6 @@ if test $local_hash != $remote_hash
 
   systemctl daemon-reload
   systemctl enable --now gitpull.timer
-  systemctl enable --now gitpull.service
-  systemctl status gitpull.service >> gitpull/gitpull.log
   systemctl status gitpull.timer >> gitpull/gitpull.log
 
 end
