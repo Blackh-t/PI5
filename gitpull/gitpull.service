@@ -1,7 +1,0 @@
-[Unit]
-Descriptopn=Git auto pull for PI5 repo.
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=ExecStart=/usr/local/bin/gitpull.service
