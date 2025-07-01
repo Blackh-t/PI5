@@ -1,6 +1,3 @@
-# 📘 PI5.log — Log & Automation System
-
-A minimal logging and automation setup for Raspberry Pi 5.
 
 ---
 
@@ -14,10 +11,9 @@ A minimal logging and automation setup for Raspberry Pi 5.
 
 ## 📁 Directory Structure
 
- bin # Scripts
- dev # subsystem
- systemd # systemd uit
- .gitignore
-󰌱 PI5.log
-󰂺 README.md 󰄱
- postman.sh # Commander
+├── bin/ # Auto-executed scripts
+├── dev/ # Subsystems / modules under development
+├── systemd/ # systemd unit and path files
+├── postman.sh # worker script
+├── README.md
+└── PI5.log # Log output file
