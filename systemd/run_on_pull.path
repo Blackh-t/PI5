@@ -1,0 +1,9 @@
+[Unit]
+Descriptor=detecting changes.
+
+[Path]
+PathModified=/usr/local/bin/run_on_pull.sh
+Unit=run_on_pull.service
+
+[Install]
+WantedBy=multi-user.target
