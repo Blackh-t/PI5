@@ -1,0 +1,10 @@
+[Unit]
+descriptor=run script: run_on_pull
+ConditionPathExists=/usr/local/bin/run_on_pull.sh
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/run_on_pull.sh
+RemainAfterExit=false
+
+
