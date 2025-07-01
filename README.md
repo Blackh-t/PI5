@@ -1,13 +1,23 @@
-PI5.log - log system.
+# 📘 PI5.log — Log & Automation System
 
-run_on_pull.sh - used to run script for the newly git commit.
-This can be: "cargo run program".
+A minimal logging and automation setup for Raspberry Pi 5.
 
-/// DIRECTORIES
-/////////////////////////////////////////////////////
+---
 
-bin - contains automatically script.
+## 🔧 Scripts
 
-dev - subsystem.
+- **`run_on_pull.sh`**  
+  Triggered after a successful `git pull`.  
+  Common use: run automation tasks such as `cargo run`.
 
-systemd -
+---
+
+## 📁 Directory Structure
+
+ bin # Scripts
+ dev # subsystem
+ systemd # systemd uit
+ .gitignore
+󰌱 PI5.log
+󰂺 README.md 󰄱
+ postman.sh # Commander
