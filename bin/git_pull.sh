@@ -3,6 +3,7 @@
 cd
 cd git/PI5
 git pull
+cd
 
 # Store git pull output
 GIT_OUTPUT=$(git pull)
