@@ -21,7 +21,8 @@ async fn main() {
 async fn git_pull() {
     println!("[Received] -- webhook -> running git_pull.sh");
 
-    let _ = Command::new("/home/yoshi/git/PI5/bin/git_pull.sh")
+    let git_pull_script = env::var("SCRIPT_PATH").unwrap();
+    let _ = Command::new(git_pull_script)
         .status()
         .expect("[Invalid] -- PATH");
 }
