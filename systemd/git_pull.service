@@ -1,0 +1,7 @@
+[Unit]
+Description=Run git_pull scrip
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/git_pull.sh
+User=root
