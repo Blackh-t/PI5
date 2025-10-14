@@ -1,4 +1,4 @@
 #!/bin/bash
 
-pinctrl FAN_PWM op dh
-eacho 1000101
+systemctl daamon-load
+systemctl enable git_pull.timer
