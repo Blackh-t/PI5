@@ -9,10 +9,10 @@ async fn main() {
 
     let tailscale_ip = env::var("TS_IP").unwrap_or("0.0.0.0".to_string());
     let port = env::var("TS_PORT").unwrap_or("3000".to_string());
-    println!("Listening on {tailscale_ip}:{port}");
+    println!("Listening on {}:{}", tailscale_ip, port);
 
     // run our app with hyper, listening globally on port 3000
-    let listener = tokio::net::TcpListener::bind("{tailscale_ip}:{port}")
+    let listener = tokio::net::TcpListener::bind(format!("{}:{}", tailscale_ip, port))
         .await
         .unwrap();
     axum::serve(listener, app).await.unwrap();
