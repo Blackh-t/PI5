@@ -1,3 +1,3 @@
 #!/bin/bash
 
-shutdown now
+pinctrl FAN_PWM op dh
