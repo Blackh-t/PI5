@@ -1,4 +1,4 @@
 #!/bin/bash
 
 systemctl daamon-load
-systemctl enable git_pull.timer
+systemctl disable webhook.service
