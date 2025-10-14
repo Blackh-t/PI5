@@ -1,14 +1,20 @@
 use axum::{routing::post, Router};
+use std::env;
 use std::process::Command;
 
 #[tokio::main]
 async fn main() {
     // build our application with a single route
     let app = Router::new().route("/webhook", post(git_pull));
-    println!("Listening on 0.0.0.0:3000");
+
+    let tailscale_ip = env::var("TS_IP").unwrap_or("0.0.0.0".to_string());
+    let port = env::var("TS_PORT").unwrap_or("3000".to_string());
+    println!("Listening on {tailscale_ip}:{port}");
 
     // run our app with hyper, listening globally on port 3000
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let listener = tokio::net::TcpListener::bind("{tailscale_ip}:{port}")
+        .await
+        .unwrap();
     axum::serve(listener, app).await.unwrap();
 }
 
