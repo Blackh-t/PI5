@@ -1,4 +1,3 @@
 #!/bin/bash
 
-pinctrl FAN_PWM op dl
-exit
+pinctrl FAN_PWM op dh
