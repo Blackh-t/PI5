@@ -9,7 +9,7 @@ GIT_OUTPUT=$(git pull)
 echo "$GIT_OUTPUT"
 
 # Moved the new script to system bin in order to run.
-if [[ "$GIT_OUTPUT" != *"Already up to date."* ]]; then
+if [[ "$GIT_OUTPUT" == *"Fast-forward"* ]]; then
     cp -f git/PI5/run_on_pull /usr/local/bin/
     chmod +x /usr/local/bin/run_on_pull.sh
     echo "[UPDATED] run_on_pull.sh "
