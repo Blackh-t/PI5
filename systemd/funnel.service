@@ -1,0 +1,9 @@
+[Unit]
+Description=Forwarding PORT 3000.
+
+[Service]
+ExecStart=/usr/bin/tailscale funnel 3000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
