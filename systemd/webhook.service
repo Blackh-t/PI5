@@ -6,8 +6,8 @@ User=root
 WorkingDirectory=/home/yoshi/
 ExecStart=/home/yoshi/git/PI5/dev/webhook/target/release/webhook
 Restart=always
-Environment="TS_IP=100.125.46.39"
-Environment="TS_PORT=5000"
+Environment="TS_IP=0.0.0.0"
+Environment="TS_PORT=3000"
 Environment="SCRIPT_PATH=/home/yoshi/git/PI5/bin/git_pull.sh"
 
 [Install]
