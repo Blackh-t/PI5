@@ -17,7 +17,7 @@ cd /home/yoshi/PI5
 # Enable webhook sever.
 systemctl daemon-reload
 systemctl enable webhook.service
-systemctl start --now webhook.service >>PI5.log
+systemctl start --now webhook.service >>logger.txt
 
 # Load PORT forwarding service to the systemd.
 cp -f /home/yoshi/git/PI5/systemd/funnel.service /etc/systemd/system/
@@ -25,4 +25,4 @@ cp -f /home/yoshi/git/PI5/systemd/funnel.service /etc/systemd/system/
 # Enable PORT forwarding.
 systemctl daemon-reload
 systemctl enable funnel.service
-systemctl start --now funnel.service >>PI5.log
+systemctl start --now funnel.service >>logger.txt
