@@ -2,6 +2,7 @@
 
 1.  **Interact with the server through git commit.**
     * Insert the script into `bin/run_on_pull.sh`
+    * Service status [view](https://raspberrypi.ibex-mooneye.ts.net/)
     * **Common usage:**
         * Add/Remove/Enable/Disable system control services/timers/path..
         * Build/Run/create program/server/docker/Database
