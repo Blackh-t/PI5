@@ -9,6 +9,7 @@ Restart=always
 Environment="TS_IP=0.0.0.0"
 Environment="TS_PORT=3000"
 Environment="SCRIPT_PATH=/home/yoshi/git/PI5/bin/git_pull.sh"
+Environment="SECRET_TOKEN=YOUR TOKEN HERE"
 
 [Install]
 WantedBy=multi-user.target
