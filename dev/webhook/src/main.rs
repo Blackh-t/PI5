@@ -1,9 +1,15 @@
-use axum::{http::HeaderMap, routing::post, Router};
+use axum::{
+    http::HeaderMap,
+    response::IntoResponse,
+    routing::{get, post},
+    Router,
+};
 use hex;
 use hmac::{Hmac, Mac};
 use sha2::Sha256;
 use std::env;
 use std::process::Command;
+use std::process::Stdio;
 
 #[tokio::main]
 async fn main() {
@@ -12,7 +18,21 @@ async fn main() {
     println!("Listening on {}:{}", tailscale_ip, port);
 
     // build our application with a single route
-    let app = Router::new().route("/webhook", post(git_pull));
+    let app = Router::new().route("/webhook", post(git_pull)).route(
+        "/",
+        get(|| async {
+            // Get systemd status.
+            let output = Command::new("/usr/local/bin/check_services.sh")
+                .stdout(Stdio::piped())
+                .stderr(Stdio::piped())
+                .output()
+                .expect("failed to execute script");
+
+            // Create the response body.
+            let body = String::from_utf8_lossy(&output.stdout).to_string();
+            body.into_response()
+        }),
+    );
 
     // run our app with hyper, listening globally on port 3000
     let listener = tokio::net::TcpListener::bind(format!("{}:{}", tailscale_ip, port))
