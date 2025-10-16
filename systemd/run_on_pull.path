@@ -1,5 +1,5 @@
 [Unit]
-Descriptor=detecting changes.
+Description=detecting changes.
 
 [Path]
 PathModified=/usr/local/bin/run_on_pull.sh
