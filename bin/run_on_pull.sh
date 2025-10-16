@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/t/git/PI5/systemd/
+cd /home/yoshi/git/PI5/systemd/
 cp -f run_on_pull.path /etc/systemd/system/
 cp -f run_on_pull.service /etc/systemd/system/
 
