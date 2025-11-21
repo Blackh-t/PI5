@@ -88,6 +88,22 @@ Environment="SECRET_TOKEN=$SECRET_TOKEN"
 WantedBy=multi-user.target
 EOF
 
+echo "📦 Generates Btop Service..."
+echo "btop.service" >>systemd.txt
+sudo tee /etc/systemd/system/btop.service >/dev/null <<EOF
+[Unit]
+Description=btop terminal via ttyd
+After=network.target
+
+[Service]
+User=root
+ExecStart=/usr/bin/ttyd -p 7777 btop
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 echo "📦 Installing $SERVICE_NAME..."
 
 # Compile webserver
@@ -102,11 +118,12 @@ sudo cp -r ./target/release/http_server $INSTALL_DIR/
 # Activates services
 sudo systemctl daemon-reload
 
-while IFS= read -r SERVICE_NAME; do 
-  sudo systemctl enable $SERVICE_NAME
-  sudo systemctl start $SERVICE_NAME
-  sudo systemctl status $SERVICE_NAME
-  
+while IFS= read -r SERVICE_NAME; do
+    sudo systemctl enable $SERVICE_NAME
+    sudo systemctl start $SERVICE_NAME
+    sudo systemctl status $SERVICE_NAME
+done <"$SERVICE_FILE"
+
 # Move SCRIPT to usr/local/bin
 cp -f $WORK_DIR/bin/git_pull.sh /usr/local/bin/
 cp -f $WORK_DIR/bin/run_on_pull.sh /usr/local/bin/

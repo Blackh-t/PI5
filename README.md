@@ -28,18 +28,28 @@ Upon receiving the request, the PI executes a `git pull` and updates the relevan
 
 ### Installation
 
-1.  **Clone the Repository:**
+1. **Install TTYD**
+   Make sure `ttyd` is installed before running the script. Use the command for your distribution:
 
-    ```bash
-    git clone https://github.com/Blackh-t/PI5
-    ```
+   | Distribution        | Install Command                                    |
+   | ------------------- | -------------------------------------------------- |
+   | Debian / Ubuntu     | `sudo apt update && sudo apt install ttyd`         |
+   | Fedora / RHEL       | `sudo dnf install ttyd`                            |
+   | Arch / Manjaro      | `sudo pacman -Syu ttyd`                            |
+   | Other / From Source | See [ttyd GitHub](https://github.com/tsl0922/ttyd) |
 
-2.  **Run the Installer Script:**
-    ```bash
-    cd PI5
-    ./postman.sh
-    ```
-    > **Note:** If you encounter a permission error, you may need to grant execute permissions first: `chmod +x postman.sh`.
+2. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/Blackh-t/PI5
+   ```
+
+3. **Run the Installer Script:**
+   ```bash
+   cd PI5
+   ./postman.sh
+   ```
+   > **Note:** If you encounter a permission error, you may need to grant execute permissions first: `chmod +x postman.sh`.
 
 ### Example Installation Script
 
