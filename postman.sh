@@ -3,7 +3,8 @@ set -e # Stop on error flag.
 
 #### CONFIG ####
 IP="127.0.0.1"
-PORT=3000 # PORT TO BE FORWARDING.
+F_PORT=7777 # PORT TO BE FORWARDING.
+G_PORT=7778 # PORT FOR glances.
 SECRET_TOKEN=""
 SERVICE_NAME="pi5_dash"
 BIN_DIR="/opt/$SERVICE_NAME"
@@ -88,16 +89,16 @@ Environment="SECRET_TOKEN=$SECRET_TOKEN"
 WantedBy=multi-user.target
 EOF
 
-echo "📦 Generates Btop Service..."
-echo "btop.service" >>systemd.txt
-sudo tee /etc/systemd/system/btop.service >/dev/null <<EOF
+echo "📦 Generates Glances Service..."
+echo "glacnces.service" >>systemd.txt
+sudo tee /etc/systemd/system/glacnces.service >/dev/null <<EOF
 [Unit]
-Description=btop terminal via ttyd
+Description=Glances service
 After=network.target
 
 [Service]
 User=root
-ExecStart=/usr/bin/ttyd -p 7777 btop
+ExecStart=/usr/bin/glances -w --browser --disable-webui -B $IP -p $G_PORT
 Restart=always
 
 [Install]
