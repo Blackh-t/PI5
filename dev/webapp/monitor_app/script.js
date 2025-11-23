@@ -43,10 +43,25 @@ resources.forEach(id => {
   init_bar(id);
 });
 
-// TMP random value.
-setInterval(() => {
-  resources.forEach(id => {
-    update_bar(id, Math.random() * 100);
-  })
-}, 1000);
+// Timer.
+const timeDisplay = document.getElementById("fetched-time");
 
+setInterval(() => {
+  resources.forEach(async (id) => {
+    
+    const url = 'http://127.0.0.1:3002/system_routing/'+id; 
+
+    try {
+        let response = await fetch(url);
+        let text = await response.text();
+        let usage = parseFloat(text); 
+        update_bar(id, usage);
+
+    } catch (e) {
+        console.error("Failed to fetch", id);
+    }
+
+  });
+  const now = new Date()
+  timeDisplay.textContent = now.toLocaleTimeString();
+}, 10000);
