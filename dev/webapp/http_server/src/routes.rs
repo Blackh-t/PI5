@@ -1,4 +1,5 @@
 use crate::handler::git_pull_service::*;
+use crate::handler::system_usage::Metrics;
 use actix_files as fs;
 
 use actix_web::{
@@ -27,4 +28,13 @@ pub fn monitor_routes(cfg: &mut web::ServiceConfig) {
     );
 }
 
-pub fn system_info_routes(cfg: &mut web::ServiceConfig) {}
+// Add this to configure your routes
+pub fn system_routing(cfg: &mut web::ServiceConfig) {
+    // Route: GET /btop
+    cfg.service(
+        web::scope("/system_routing")
+            .route("/cpu", web::get().to(Metrics::get_cpu_usage))
+            .route("/mem", web::get().to(Metrics::get_mem_usage))
+            .route("/disk", web::get().to(Metrics::get_disk_usage)),
+    );
+}

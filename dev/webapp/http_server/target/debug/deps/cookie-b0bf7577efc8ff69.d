@@ -1,0 +1,11 @@
+/home/blackh-t/Documents/git/PI5/dev/webapp/http_server/target/debug/deps/libcookie-b0bf7577efc8ff69.rmeta: /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/lib.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/builder.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/parse.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/jar.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/delta.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/draft.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/expiration.rs
+
+/home/blackh-t/Documents/git/PI5/dev/webapp/http_server/target/debug/deps/cookie-b0bf7577efc8ff69.d: /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/lib.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/builder.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/parse.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/jar.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/delta.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/draft.rs /home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/expiration.rs
+
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/lib.rs:
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/builder.rs:
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/parse.rs:
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/jar.rs:
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/delta.rs:
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/draft.rs:
+/home/blackh-t/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cookie-0.16.2/src/expiration.rs:

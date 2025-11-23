@@ -2,11 +2,10 @@ use actix_web::{middleware::Logger, App, HttpServer};
 use env_logger::Env;
 use log::{error, warn};
 use std::{env, u16};
-
 mod handler;
 mod routes;
 
-use crate::routes::{monitor_routes, webhook_routes};
+use crate::routes::{monitor_routes, system_routing, webhook_routes};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -29,9 +28,10 @@ async fn main() -> std::io::Result<()> {
     // Initial HTTP workers to handle inncomming TCP connections.
     HttpServer::new(|| {
         App::new()
-            .wrap(Logger::default())
+            .wrap(Logger::new("%a\t | %s\t | %Dms\t | %r\t"))
             .configure(webhook_routes)
             .configure(monitor_routes)
+            .configure(system_routing)
     })
     .workers(n_cpu)
     .backlog(n_queue)
