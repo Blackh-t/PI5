@@ -5,6 +5,7 @@ set -e # Stop on error flag.
 IP="127.0.0.1"
 F_PORT=7777 # PORT TO BE FORWARDING.
 G_PORT=7778 # PORT FOR glances.
+SERVER_ENDPOINT=""
 SECRET_TOKEN=""
 SERVICE_NAME="pi5_dash"
 BIN_DIR="/opt/$SERVICE_NAME"
@@ -124,6 +125,36 @@ while IFS= read -r SERVICE_NAME; do
     sudo systemctl start $SERVICE_NAME
     sudo systemctl status $SERVICE_NAME
 done <"$SERVICE_FILE"
+
+# Updates the endpoint for client-side. 
+echo "📦 Configure client-side endpoint..."
+tailscale status
+read -p "Type the Funnel endpoint (FULL PATH!): " SERVER_ENDPOINT
+
+sudo tee -a dev/monitor_app/script.js >/dev/null <<EOF
+// Timer.
+const timeDisplay = document.getElementById("fetched-time");
+
+setInterval(() => {
+  resources.forEach(async (id) => {
+    
+    const url = '$SERVER_ENDPOINT/system_routing/'+id; 
+
+    try {
+        let response = await fetch(url);
+        let text = await response.text();
+        let usage = parseFloat(text); 
+        update_bar(id, usage);
+
+    } catch (e) {
+        console.error("Failed to fetch", id);
+    }
+
+  });
+  const now = new Date()
+  timeDisplay.textContent = now.toLocaleTimeString();
+}, 10000);
+EOF 
 
 # Move SCRIPT to usr/local/bin
 cp -f $WORK_DIR/bin/git_pull.sh /usr/local/bin/
