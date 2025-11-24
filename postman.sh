@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e # Stop on error flag.
 
-#             CONFIG                  
+#             CONFIG
 #######################################
 IP="127.0.0.1"
-WS_PORT=7777 # WebServer PORT.
+WS_PORT=7777   # WebServer PORT.
 BTOP_PORT=7778 # BTOP TTYD PORT.
 SERVER_ENDPOINT=""
 SECRET_TOKEN=""
@@ -13,16 +13,14 @@ BIN_DIR="/opt/$SERVICE_NAME"
 WORK_DIR=$(pwd)
 SYSTEMD_LIST=$WORK_DIR"/systemd.txt"
 
-
-#        INSTALL TAILSCALE            
+#        INSTALL TAILSCALE
 #######################################
 curl -fsSL https://tailscale.com/install.sh | sh
 sudo systemctl enable --now tailscaled
 sudo tailscale login
 sudo tailscale up
 
-
-# Init SECRET_TOKEN for Github webhook. 
+# Init SECRET_TOKEN for Github webhook.
 if [ -z "$SECRET_TOKEN" ]; then
     echo "SECRET_TOKEN for Github Webhook is Undefined! More info visit: https://docs.github.com/en/webhooks/using-webhooks/creating-webhooks"
     read -p "Type the SECRET_TOKEN: " SECRET_TOKEN
@@ -68,7 +66,6 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
-
 
 #       btop.service
 #######################################
@@ -160,14 +157,14 @@ sudo systemctl daemon-reload
 while IFS= read -r SERVICE_NAME; do
     sudo systemctl enable "$SERVICE_NAME"
     sudo systemctl start "$SERVICE_NAME"
-done < "$SYSTEMD_LIST"
+done <"$SYSTEMD_LIST"
 
-# Updates the endpoint for client-side. 
+# Updates the endpoint for client-side.
 echo "📦 Configure client-side endpoint..."
 systemctl status btop.service
 read -p "Type the hostname (example: https://hostname.ts.net): " SERVER_ENDPOINT
 
-sudo tee -a $WORK_DIR/dev/http_server/monitor_app/script.js >/dev/null <<EOF
+sudo tee -a $WORK_DIR/dev/webapp/monitor_app/script.js >/dev/null <<EOF
 iframe.src = "$SERVER_ENDPOINT/btop";
 EOF
 
