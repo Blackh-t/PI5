@@ -1,0 +1,22 @@
+html {
+    background-color: #000000;
+}
+
+/* Top nav
+////////////////////////////////////*/
+.topnav {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  border-left: 10px solid #1DCD9F;
+  border-radius: 0px;
+  background-color: black;
+}
+
+.topnav a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 17px;
+  font-family: monospace;
+}
