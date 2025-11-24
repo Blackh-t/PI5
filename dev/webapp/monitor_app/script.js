@@ -65,3 +65,5 @@ resources.forEach(id => {
 //   const now = new Date()
 //   timeDisplay.textContent = now.toLocaleTimeString();
 // }, 10000);
+
+const iframe = document.getElementById('btop-frame');

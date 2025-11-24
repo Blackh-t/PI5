@@ -28,20 +28,23 @@ Upon receiving the request, the PI executes a `git pull` and updates the relevan
 
 ### Installation
 
-Make sure [Glances](https://github.com/nicolargo/glances) is installed before running the scripts:
+1. **Install TTYD**
+   Make sure `ttyd` is installed before running the script. Use the command for your distribution:
 
-```bash
-pip install fastapi uvicorn jinja2
-pip install glances
-```
+   | Distribution        | Install Command                                    |
+   | ------------------- | -------------------------------------------------- |
+   | Debian / Ubuntu     | `sudo apt update && sudo apt install ttyd`         |
+   | Fedora / RHEL       | `sudo dnf install ttyd`                            |
+   | Arch / Manjaro      | `sudo pacman -Syu ttyd`                            |
+   | Other / From Source | See [ttyd GitHub](https://github.com/tsl0922/ttyd) |
 
-1. **Clone the Repository:**
+2. **Clone the Repository:**
 
    ```bash
    git clone https://github.com/Blackh-t/PI5
    ```
 
-2. **Run the Installer Script:**
+3. **Run the Installer Script:**
    ```bash
    cd PI5
    ./postman.sh
