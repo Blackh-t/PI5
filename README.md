@@ -28,15 +28,30 @@ Upon receiving the request, the PI executes a `git pull` and updates the relevan
 
 ### Installation
 
-1. **Install TTYD**
-   Make sure `ttyd` is installed before running the script. Use the command for your distribution:
+1. **Install TTYD and Btop**
+   Before running the installation script, make sure **`ttyd`** and **`btop`** are installed on your system.
 
-   | Distribution        | Install Command                                    |
-   | ------------------- | -------------------------------------------------- |
-   | Debian / Ubuntu     | `sudo apt update && sudo apt install ttyd`         |
-   | Fedora / RHEL       | `sudo dnf install ttyd`                            |
-   | Arch / Manjaro      | `sudo pacman -Syu ttyd`                            |
-   | Other / From Source | See [ttyd GitHub](https://github.com/tsl0922/ttyd) |
+## a) Installing TTYD
+
+| Distribution        | Install Command                                    |
+| ------------------- | -------------------------------------------------- |
+| Fedora / RHEL       | `sudo dnf install ttyd`                            |
+| Arch / Manjaro      | `sudo pacman -Syu ttyd`                            |
+| Ubuntu / Debian     | `sudo apt install ttyd`                            |
+| Other / From Source | See [ttyd GitHub](https://github.com/tsl0922/ttyd) |
+
+## b) Installing Btop
+
+`btop` is a modern system monitoring tool. You can install it via your package manager or from source:
+
+| Distribution        | Install Command                                         |
+| ------------------- | ------------------------------------------------------- |
+| Fedora / RHEL       | `sudo dnf install btop`                                 |
+| Arch / Manjaro      | `sudo pacman -S btop`                                   |
+| Ubuntu / Debian     | `sudo apt install btop`                                 |
+| Other / From Source | See [btop GitHub](https://github.com/aristocratos/btop) |
+
+---
 
 2. **Clone the Repository:**
 
