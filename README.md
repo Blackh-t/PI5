@@ -1,4 +1,4 @@
-# 🌟 PI5 Automated Deployment & System Management
+# PI5 Automated Deployment & System Management
 
 **Status:** [View Live Status](https://raspberrypi.ibex-mooneye.ts.net/monitor/)
 
@@ -67,36 +67,27 @@ Upon receiving the request, the PI executes a `git pull` and updates the relevan
 
 ### Example Installation Script
 
-This example shows the script used to install the Webhook service itself (see commit [4fed9db](https://github.com/Blackh-t/PI5/commit/4fed9db3f7ef5e82e1da7d6b4bd8c13f57c3b576)):
+Script used to install the Webhook service itself (see commit [4fed9db](https://github.com/Blackh-t/PI5/commit/4fed9db3f7ef5e82e1da7d6b4bd8c13f57c3b576)):
 
 ```bash
 #!/bin/bash
 
-# Disable and stop the git pull timer for safety
-systemctl daemon-reload
-systemctl disable git_pull.timer
+# Example 1.
+docker pull postgres:latest
+docker run --name forwarding_table \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=admin \
+  -e POSTGRES_DB=global \
+  -p 65000:49000 \
+  -d postgres
 
-# Load the webhook service to the systemd directory
-cp -f /home/yoshi/git/PI5/systemd/webhook.service /etc/systemd/system/
+# Add to dashboard
+create_serivce("DB", 65000, 49000, "admin") # in v1.2.1
 
-# Build the webhook executable
-cd /home/yoshi/git/PI5/dev/webhook
-cargo build --release
 
-# Change directory to store logs
-cd /home/yoshi/PI5
-
-# Enable and start the webhook server
-systemctl daemon-reload
-systemctl enable webhook.service
-systemctl start --now webhook.service >>PI5.log
-
-# Load the Tailscale Funnel service (for port forwarding) to systemd
-cp -f /home/yoshi/git/PI5/systemd/funnel.service /etc/systemd/system/
-
-# Enable and start the PORT forwarding service
-systemctl daemon-reload
-systemctl enable funnel.service
-systemctl start --now funnel.service >>PI5.log
-
+#Example 2.
+cd ~/path/to/rust
+cargo build
+cargo test
+cargo run
 ```
