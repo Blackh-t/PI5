@@ -1,6 +1,6 @@
 # 🌟 PI5 Automated Deployment & System Management
 
-**Status:** [View Live Status](https://raspberrypi.ibex-mooneye.ts.net/)
+**Status:** [View Live Status](https://raspberrypi.ibex-mooneye.ts.net/monitor/)
 
 ---
 
@@ -31,25 +31,24 @@ Upon receiving the request, the PI executes a `git pull` and updates the relevan
 1. **Install TTYD and Btop**
    Before running the installation script, make sure **`ttyd`** and **`btop`** are installed on your system.
 
-## a) Installing TTYD
+    a) Installing TTYD
+      | Distribution        | Install Command                                    |
+      | ------------------- | -------------------------------------------------- |
+      | Fedora / RHEL       | `sudo dnf install ttyd`                            |
+      | Arch / Manjaro      | `sudo pacman -Syu ttyd`                            |
+      | Ubuntu / Debian     | `sudo apt install ttyd`                            |
+      | Other / From Source | See [ttyd GitHub](https://github.com/tsl0922/ttyd) |
 
-| Distribution        | Install Command                                    |
-| ------------------- | -------------------------------------------------- |
-| Fedora / RHEL       | `sudo dnf install ttyd`                            |
-| Arch / Manjaro      | `sudo pacman -Syu ttyd`                            |
-| Ubuntu / Debian     | `sudo apt install ttyd`                            |
-| Other / From Source | See [ttyd GitHub](https://github.com/tsl0922/ttyd) |
+   b) Installing Btop
 
-## b) Installing Btop
+   `btop` is a modern system monitoring tool. You can install it via your package manager or from source:
 
-`btop` is a modern system monitoring tool. You can install it via your package manager or from source:
-
-| Distribution        | Install Command                                         |
-| ------------------- | ------------------------------------------------------- |
-| Fedora / RHEL       | `sudo dnf install btop`                                 |
-| Arch / Manjaro      | `sudo pacman -S btop`                                   |
-| Ubuntu / Debian     | `sudo apt install btop`                                 |
-| Other / From Source | See [btop GitHub](https://github.com/aristocratos/btop) |
+      | Distribution        | Install Command                                         |
+      | ------------------- | ------------------------------------------------------- |
+      | Fedora / RHEL       | `sudo dnf install btop`                                 |
+      | Arch / Manjaro      | `sudo pacman -S btop`                                   |
+      | Ubuntu / Debian     | `sudo apt install btop`                                 |
+      | Other / From Source | See [btop GitHub](https://github.com/aristocratos/btop) |
 
 ---
 
