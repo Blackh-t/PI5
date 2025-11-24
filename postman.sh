@@ -4,8 +4,8 @@ set -e # Stop on error flag.
 #             CONFIG                  
 #######################################
 IP="127.0.0.1"
-WS_PORT=7777 # PORT TO BE FORWARDING.
-BTOP_PORT=7778 # PORT FOR glances.
+WS_PORT=7777 # WebServer PORT.
+BTOP_PORT=7778 # BTOP TTYD PORT.
 SERVER_ENDPOINT=""
 SECRET_TOKEN=""
 SERVICE_NAME="pi5_dash"
@@ -167,9 +167,9 @@ echo "📦 Configure client-side endpoint..."
 systemctl status btop.service
 read -p "Type the hostname (example: https://hostname.ts.net): " SERVER_ENDPOINT
 
-sudo tee -a dev/monitor_app/script.js >/dev/null <<EOF
+sudo tee -a $WORK_DIR/dev/http_server/monitor_app/script.js >/dev/null <<EOF
 iframe.src = "$SERVER_ENDPOINT/btop";
-EOF 
+EOF
 
 # Move SCRIPT to usr/local/bin
 cp -f $WORK_DIR/bin/git_pull.sh /usr/local/bin/
