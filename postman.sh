@@ -4,7 +4,7 @@ set -e # Stop on error flag.
 #             CONFIG                  
 #######################################
 IP="127.0.0.1"
-PORT=7777 # PORT TO BE FORWARDING.
+WS_PORT=7777 # PORT TO BE FORWARDING.
 BTOP_PORT=7778 # PORT FOR glances.
 SERVER_ENDPOINT=""
 SECRET_TOKEN=""
@@ -34,29 +34,41 @@ echo "📦 Generates Funnel Service..."
 echo "funnel_webserver.service" >>systemd.txt
 sudo tee /etc/systemd/system/funnel_webserver.service >/dev/null <<EOF
 [Unit]
-Description=FORWARDING PORT $PORT
+Description=Funnel WebServer (Port $WS_PORT)
+After=network-online.target tailscaled.service
+Requires=tailscaled.service
 
 [Service]
-ExecStart=/usr/bin/tailscale funnel --bg --set-path / http://127.0.0.1:$PORT
-Restart=always
+Type=simple
+User=root
+ExecStart=/usr/bin/tailscale funnel --bg --set-path / http://127.0.0.1:$WS_PORT
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
 EOF
-#---------------------------------------
 
+#       funnel_btop.services
+#######################################
 echo "funnel_btop.service" >>systemd.txt
 sudo tee /etc/systemd/system/funnel_btop.service >/dev/null <<EOF
 [Unit]
-Description=FORWARDING PORT $PORT
+Description=Funnel Btop (Port $BTOP_PORT)
+After=network-online.target tailscaled.service
+Requires=tailscaled.service
 
 [Service]
+Type=simple
+User=root
 ExecStart=/usr/bin/tailscale funnel --bg --set-path /btop http://127.0.0.1:$BTOP_PORT
-Restart=always
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
 EOF
+
 
 #       btop.service
 #######################################
@@ -66,7 +78,7 @@ echo "📦 Generates Btop Service..."
 echo "btop.service" >>systemd.txt
 sudo tee /etc/systemd/system/btop.service >/dev/null <<EOF
 [Unit]
-Description=Glances service
+Description=Btop service
 After=network.target
 
 [Service]
@@ -88,7 +100,7 @@ Description=Run webserver.
 
 [Service]
 User=root
-WorkingDirectory=$WORK_DIR
+WorkingDirectory=$WORK_DIR/
 ExecStart=$BIN_DIR/http_server
 Restart=always
 Environment="TS_IP=$IP"
@@ -118,7 +130,6 @@ EOF
 
 #       run_on_pull.service
 #######################################
-echo "run_on_pull.service" >>systemd.txt
 sudo tee /etc/systemd/system/run_on_pull.service >/dev/null <<EOF
 [Unit]
 Description=run script: run_on_pull
@@ -146,11 +157,9 @@ sudo cp -r ./target/release/http_server $BIN_DIR/
 
 # Activates services
 sudo systemctl daemon-reload
-
 while IFS= read -r SERVICE_NAME; do
     sudo systemctl enable "$SERVICE_NAME"
     sudo systemctl start "$SERVICE_NAME"
-    sudo systemctl status "$SERVICE_NAME"
 done < "$SYSTEMD_LIST"
 
 # Updates the endpoint for client-side. 
@@ -159,6 +168,7 @@ systemctl status btop.service
 read -p "Type the hostname (example: https://hostname.ts.net): " SERVER_ENDPOINT
 
 sudo tee -a dev/monitor_app/script.js >/dev/null <<EOF
+
 iframe.src = "$SERVER_ENDPOINT/btop";
 EOF 
 
