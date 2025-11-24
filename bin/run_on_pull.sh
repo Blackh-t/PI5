@@ -1,3 +1,2 @@
 #!/bin/bash
-
-shutdown now
+# Your script here:
