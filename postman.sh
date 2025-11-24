@@ -100,7 +100,7 @@ Description=Run webserver.
 
 [Service]
 User=root
-WorkingDirectory=$WORK_DIR/
+WorkingDirectory=$WORK_DIR/dev/webapp/http_server/
 ExecStart=$BIN_DIR/http_server
 Restart=always
 Environment="TS_IP=$IP"
@@ -168,7 +168,6 @@ systemctl status btop.service
 read -p "Type the hostname (example: https://hostname.ts.net): " SERVER_ENDPOINT
 
 sudo tee -a dev/monitor_app/script.js >/dev/null <<EOF
-
 iframe.src = "$SERVER_ENDPOINT/btop";
 EOF 
 
